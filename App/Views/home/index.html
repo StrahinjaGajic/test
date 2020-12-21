@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block body %}
+    <section class="jumbotron text-center">
+        <div class="container">
+            <h1 class="jumbotron-heading">Welcome to Citrus Catalog</h1>
+        </div>
+    </section>
+    <div class="album py-5">
+        <div class="container">
+            <h3>Products</h3>
+            <div class="row">
+                {% for product in products %}
+                    <div class="col-md-4">
+                        <div class="card mb-4 box-shadow">
+                            <img class="card-img-top" src="resources/images/{{ product.image }}" alt="{{ product.title }}" style="height: 225px; width: 100%; display: block;" data-holder-rendered="true">
+                            <div class="card-body">
+                                <h3>{{ product.title }}</h3>
+                                <p class="card-text">{{ product.description }}</p>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <h3>Comments</h3>
+            <div class="row">
+                {% for comment in comments %}
+                    {% if comment.allowed == 1 %}
+                    <div class="col-lg-12">
+                        <div class="float-left">
+                            <div class="col-lg-12 font-weight-bold my-3">{{ comment.name }}</div>
+                            <div class="col-lg-12 my-2">{{ comment.email }}</div>
+                            <div class="col-lg-12">{{ comment.text }}</div>
+                        </div>
+                    </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+            <h3 class="my-3">Please comment our products and company</h3>
+            <form action="comment/store" method="POST">
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Name</label>
+                    <input name="name" type="text" class="form-control" id="name" aria-describedby="nameHelp" placeholder="Please enter your name">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Email address</label>
+                    <input name="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                </div>
+                <div class="form-group">
+                    <label for="exampleFormControlTextarea1">Comment</label>
+                    <textarea name="comment" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Post</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}

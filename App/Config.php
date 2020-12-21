@@ -11,6 +11,11 @@ class Config
 {
 
     /**
+     * Application url address
+     */
+    const APP_URL = 'http://localhost/citrus-test/public/';
+
+    /**
      * Database host
      * @var string
      */

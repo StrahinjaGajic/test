@@ -25,14 +25,14 @@ abstract class Controller
      */
     public function __construct($route_params)
     {
+        Session::init();
+
         $this->route_params = $route_params;
     }
 
     /**
-     * Magic method called when a non-existent or inaccessible method is
-     * called on an object of this class. Used to execute before and after
-     * filter methods on action methods. Action methods need to be named
-     * with an "Action" suffix, e.g. indexAction, showAction etc.
+     * We use this magic method to execute before and after filter methods on action methods.
+     * Controller method will be called with suffix Action
      *
      * @param string $name  Method name
      * @param array $args Arguments passed to the method

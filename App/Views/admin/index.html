@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block body %}
+    <section class="jumbotron text-center">
+        <div class="container">
+            <h1 class="jumbotron-heading">Welcome to Citrus Admin Panel</h1>
+        </div>
+    </section>
+    <div class="album py-5">
+        <div class="container">
+            <form action="admin/login" method="POST">
+                <div class="form-group">
+                    <label for="email">Email address</label>
+                    <input name="email" type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter following email, admin@email.com">
+                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input name="password" type="password" class="form-control" id="password" aria-describedby="password" placeholder="Please enter following password, adminPassword2020">
+                </div>
+                {% if session|length > 0 %}
+                <div class="d-block my-3">
+                    <small style="color: red;">{{ session.error }}</small>
+                </div>
+                {% endif %}
+                <button type="submit" class="btn btn-primary">Post</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}

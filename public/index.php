@@ -27,7 +27,20 @@ set_exception_handler('Core\Error::exceptionHandler');
 $router = new Core\Router();
 
 // Add the routes
-$router->add('', ['controller' => 'Home', 'action' => 'index']);
-$router->add('{controller}/{action}');
+$router->add('', ['controller' => 'home', 'action' => 'index']);
+
+$router->add('comment/store', ['controller' => 'comment', 'action' => 'store']);
+
+$router->add('admin', ['controller' => 'admin', 'action' => 'index']);
+
+$router->add('admin/login', ['controller' => 'admin', 'action' => 'login']);
+
+$router->add('admin/showCommentList', ['controller' => 'admin', 'action' => 'show-comment-list']);
+
+$router->add('admin/enable/comment', ['controller' => 'admin', 'action' => 'enable-comment']);
+
+$router->add('admin/disable/comment', ['controller' => 'admin', 'action' => 'disable-comment']);
+
+$router->add('admin/logout', ['controller' => 'admin', 'action' => 'logout']);
     
 $router->dispatch($_SERVER['QUERY_STRING']);

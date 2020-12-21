@@ -110,6 +110,7 @@ class Router
         if ($this->match($url)) {
             $controller = $this->params['controller'];
             $controller = $this->convertToStudlyCaps($controller);
+            $controller = $this->addControllerSuffix($controller);
             $controller = $this->getNamespace() . $controller;
 
             if (class_exists($controller)) {
@@ -136,13 +137,24 @@ class Router
      * Convert the string with hyphens to StudlyCaps,
      * e.g. post-authors => PostAuthors
      *
-     * @param string $string The string to convert
+     * @param string $val The string to convert
      *
      * @return string
      */
-    protected function convertToStudlyCaps($string)
+    protected function convertToStudlyCaps(string $val)
     {
-        return str_replace(' ', '', ucwords(str_replace('-', ' ', $string)));
+        return str_replace(' ', '', ucwords(str_replace('-', ' ', $val)));
+    }
+
+    /**
+     * Add suffix to class
+     *
+     * @param string $string
+     * @return string
+     */
+    protected function addControllerSuffix(string $string): string
+    {
+        return $string.'Controller';
     }
 
     /**

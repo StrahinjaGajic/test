@@ -26,7 +26,7 @@ class HomeController extends Controller
         $comment = new Comment();
 
         $products = $product->getAll();
-        $comments = $comment->getAll();
+        $comments = $comment->where('allowed','1');
 
         View::renderTemplate('home/index.html',[
             'products' => $products,

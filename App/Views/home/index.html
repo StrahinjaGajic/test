@@ -24,10 +24,10 @@
                     </div>
                 {% endfor %}
             </div>
+            {% if comments|length > 0 %}
             <h3>Comments</h3>
             <div class="row">
                 {% for comment in comments %}
-                    {% if comment.allowed == 1 %}
                     <div class="col-lg-12">
                         <div class="float-left">
                             <div class="col-lg-12 font-weight-bold my-3">{{ comment.name }}</div>
@@ -35,9 +35,9 @@
                             <div class="col-lg-12">{{ comment.text }}</div>
                         </div>
                     </div>
-                    {% endif %}
                 {% endfor %}
             </div>
+            {% endif %}
             <h3 class="my-3">Please comment our products and company</h3>
             <form action="comment/store" method="POST">
                 <div class="form-group">

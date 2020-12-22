@@ -28,15 +28,22 @@ class Model
      * @param string $columns specify which columns to query
      * @return array|null
      */
-    public function getAll($columns = '')
+    public function getAll($columns = '*')
     {
-        if($columns !== '') {
-            $data = self::$DB->query("SELECT {$columns} FROM ".$this->table)->get();
-        } else {
-            $data = self::$DB->query('SELECT * FROM '.$this->table)->get();
-        }
+        return self::$DB->query("SELECT {$columns} FROM ".$this->table)->get();
+    }
 
-        return $data;
+    /**
+     * Get all rows where column = data
+     *
+     * @param string $columns
+     * @param string $column
+     * @param string|int $data
+     * @return array|null
+     */
+    public function where($column, $data, $columns = '*')
+    {
+        return self::$DB->query("SELECT {$columns} FROM {$this->table} WHERE {$column} = '{$data}'")->get();
     }
 
     /**
@@ -45,7 +52,7 @@ class Model
      * @param array $data
      * @return bool
      */
-    public function create(array $data)
+    public function create(array $data): bool
     {
         $queryData = [];
         foreach ($this->fillable as $field) {

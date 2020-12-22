@@ -10,6 +10,7 @@
     </section>
     <div class="album py-5">
         <div class="container">
+            <a href="../public" class="btn btn-info my-3">Home Page</a>
             <form action="admin/login" method="POST">
                 <div class="form-group">
                     <label for="email">Email address</label>
@@ -25,7 +26,7 @@
                     <small style="color: red;">{{ session.error }}</small>
                 </div>
                 {% endif %}
-                <button type="submit" class="btn btn-primary">Post</button>
+                <button type="submit" class="btn btn-primary">Login</button>
             </form>
         </div>
     </div>

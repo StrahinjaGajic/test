@@ -2,6 +2,9 @@
 
 namespace Core;
 
+use \Twig\Loader\Filesystemloader;
+use \Twig\Environment;
+
 /**
  *
  * View
@@ -39,14 +42,15 @@ class View
      * @param array $args  Associative array of data to display in the view (optional)
      *
      * @return void
+     * @throws \Exception
      */
     public static function renderTemplate($template, $args = [])
     {
         static $twig = null;
 
         if ($twig === null) {
-            $loader = new \Twig\Loader\Filesystemloader(dirname(__DIR__) . '/App/Views');
-            $twig = new \Twig\Environment($loader);
+            $loader = new Filesystemloader(dirname(__DIR__) . '/App/Views');
+            $twig = new Environment($loader);
         }
 
         echo $twig->render($template, $args);

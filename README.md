@@ -4,11 +4,13 @@
 1. composer install
 2. Change APP_URL in App\Config file if needed
 3. Import database from test/test.sql
+4. Change database credentials in App\Config file if needed
 
 Admin credentials:<br>
-Email: adminPassword2020<br>
-Password: admin@email.com<br>
+
+Email: admin@email.com<br>
+Password: adminPassword2020<br>
 
 Application is initialized from public/index.php<br>
+
 To access admin panel go to /admin page<br>
-Admin credentials are written in placeholder of a form

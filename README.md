@@ -3,7 +3,7 @@
 
 1. composer install
 2. Change APP_URL in App\Config file if needed
-3. Import database from test/test.sql
+3. Import database from test/citrus.sql
 4. Change database credentials in App\Config file if needed
 
 Admin credentials:<br>

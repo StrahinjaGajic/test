@@ -8,6 +8,7 @@
         <h1 class="jumbotron-heading">Welcome to Citrus Admin Panel</h1>
     </div>
 </section>
+<a href="../" class="btn btn-info mx-3">Products</a>
 <div class="album py-5">
     <div class="container-fluid">
         <div class="col-lg-12">
@@ -46,7 +47,7 @@
                         {% else %}
                         <form action="../admin/disable/comment" method="POST">
                             <input type="hidden" name="id" value="{{ comment.id }}" />
-                            <button type="button" class="btn btn-danger">Hide</button>
+                            <button type="submit" class="btn btn-danger">Hide</button>
                         </form>
                         {% endif %}
                     </td>

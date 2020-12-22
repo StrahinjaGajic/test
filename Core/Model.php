@@ -73,34 +73,34 @@ class Model
      * @param array $data
      * @param int $id
      *
-     * @return mixed
+     * @return boolean
      */
-    public function update(int $id, array $data)
+    public function update(int $id, array $data): bool
     {
+        if (empty($data)) {
+            return false;
+        }
+
         $queryData = [];
 
-        if (!empty($data)) {
-            foreach ($this->fillable as $field) {
-                if (array_key_exists($field, $data)) {
-                    $queryData[$field] = $data[$field];
-                }
+        $updateParams = [];
+
+        foreach ($this->fillable as $field) {
+            if (array_key_exists($field, $data)) {
+                $queryData[$field] = $data[$field];
+
+                $updateParams[] = "{$field} = :{$field}";
             }
         }
 
-        $queryData = array_map(function ($field){
-            return "{$field} = :{$field}";
-        }, $queryData);
+        $updateParams = implode(', ', $updateParams);
 
-
-        $updateParams = implode(', ', $queryData);
-
-        dd($updateParams);
-        $query = App::get('db')->query("
-            UPDATE {$this->table} SET {$updateParams} WHERE id = {$this->id}
+        $query = self::$DB->query("
+            UPDATE {$this->table} SET {$updateParams} WHERE id = {$id}
         ");
 
-        foreach ($this->fillable as $field) {
-            $query->bind(':' . $field, $this->$field);
+        foreach ($queryData as $key => $value) {
+            $query->bind(':' . $key, $value);
         }
 
         return $query->execute();
@@ -111,10 +111,10 @@ class Model
      *
      * @return bool
      */
-    public function delete()
+    public function delete(int $id): bool
     {
-        return App::get('db')->query("
-            DELETE FROM {$this->table} WHERE id = {$this->id}
+        return self::$DB->query("
+            DELETE FROM {$this->table} WHERE id = {$id}
         ")->execute();
     }
 }

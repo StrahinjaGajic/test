@@ -70,6 +70,8 @@ class AdminController extends Controller
         $comment->update($id, [
             'allowed' => '1'
         ]);
+
+        return redirect('admin/showCommentList');
     }
 
     public function disableCommentAction()
@@ -79,8 +81,10 @@ class AdminController extends Controller
         $comment = new Comment();
 
         $comment->update($id, [
-            'allowed' => '1'
+            'allowed' => '0'
         ]);
+
+        return redirect('admin/showCommentList');
     }
 
     public function logoutAction()

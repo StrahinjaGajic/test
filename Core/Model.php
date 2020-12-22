@@ -2,12 +2,14 @@
 
 namespace Core;
 
+use Core\Interfaces\ModelInterface;
+
 /**
  *
  * Base model
  *
  */
-class Model
+class Model implements ModelInterface
 {
     protected static $DB = null;
 
@@ -114,8 +116,9 @@ class Model
     }
 
     /**
-     * Delete data from database
+     * Delete resource from database
      *
+     * @param int $id
      * @return bool
      */
     public function delete(int $id): bool

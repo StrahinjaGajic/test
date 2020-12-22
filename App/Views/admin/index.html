@@ -13,12 +13,12 @@
             <form action="admin/login" method="POST">
                 <div class="form-group">
                     <label for="email">Email address</label>
-                    <input name="email" type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter following email, admin@email.com">
+                    <input name="email" type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Email address">
                     <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
                 </div>
                 <div class="form-group">
                     <label for="password">Password</label>
-                    <input name="password" type="password" class="form-control" id="password" aria-describedby="password" placeholder="Please enter following password, adminPassword2020">
+                    <input name="password" type="password" class="form-control" id="password" aria-describedby="password" placeholder="Password">
                 </div>
                 {% if session|length > 0 %}
                 <div class="d-block my-3">
